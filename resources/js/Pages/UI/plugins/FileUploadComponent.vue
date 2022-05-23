@@ -24,13 +24,28 @@
             return {
                 name: '',
                 file: '',
-                success: ''
+                success: '',
+                files: [],
+
             };
+        },
+        watch:{
+            files: {
+                handler(newVal)
+                {
+
+                }
+            }
         },
         methods: {
             onChange(e) {
                 this.file = e.target.files[0];
             },
+            async getAllFiles()
+            {
+
+            }
+            ,
             formSubmit(e) {
                 e.preventDefault();
                 let existingObj = this;
@@ -41,7 +56,7 @@
                 }
                 let data = new FormData();
                 data.append('file', this.file);
-                axios.post('/upload', data, config)
+                axios.post('api/upload', data, config)
                     .then(function (res) {
                         existingObj.success = res.data.success;
                     })

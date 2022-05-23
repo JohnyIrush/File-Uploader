@@ -6,9 +6,10 @@
           <div class="card sec-bg-color">
             <div class="card-body p-3">
               <!--<uploader></uploader>-->
-               <uploader_advanced></uploader_advanced>
-               <!--<fileuploadcomponent></fileuploadcomponent>-->
+               <!--<uploader_advanced></uploader_advanced>-->
+               <fileuploadcomponent></fileuploadcomponent>
                <!--<multi_upload></multi_upload>-->
+               <!--<upload_progress></upload_progress>-->
             </div>
           </div>
         </div>
@@ -144,6 +145,7 @@
     import server_speed from "../components/progress/circular/server-speed.vue";
     import fileuploadcomponent from "../plugins/FileUploadComponent.vue";
     import multi_upload from "../plugins/Advanced/multi-upload.vue";
+    import upload_progress from "../plugins/Advanced/UploadFiles.vue";
 
     export default defineComponent({
         components: {
@@ -157,7 +159,8 @@
             recycle_bin_storage,
             server_speed,
             fileuploadcomponent,
-            multi_upload
+            multi_upload,
+            upload_progress
         },
 
         mounted() {
