@@ -56,6 +56,43 @@ return [
             'throw' => false,
         ],
 
+        'ftp' => [
+            'driver' => 'ftp',
+            'host' => env('FTP_HOST'),
+            'username' => env('FTP_USERNAME'),
+            'password' => env('FTP_PASSWORD'),
+
+            // Optional FTP Settings...
+            // 'port' => env('FTP_PORT', 21),
+            // 'root' => env('FTP_ROOT'),
+            // 'passive' => true,
+            // 'ssl' => true,
+            // 'timeout' => 30,
+        ],
+
+
+        'sftp' => [
+            'driver' => 'sftp',
+            'host' => env('SFTP_HOST'),
+
+            // Settings for basic authentication...
+            'username' => env('SFTP_USERNAME'),
+            'password' => env('SFTP_PASSWORD'),
+
+            // Settings for SSH key based authentication with encryption password...
+            'privateKey' => env('SFTP_PRIVATE_KEY'),
+            'password' => env('SFTP_PASSWORD'),
+
+            // Optional SFTP Settings...
+            // 'hostFingerprint' => env('SFTP_HOST_FINGERPRINT'),
+            // 'maxTries' => 4,
+            // 'passphrase' => env('SFTP_PASSPHRASE'),
+            // 'port' => env('SFTP_PORT', 22),
+            // 'root' => env('SFTP_ROOT', ''),
+            // 'timeout' => 30,
+            // 'useAgent' => true,
+        ],
+
     ],
 
     /*
@@ -71,6 +108,12 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('images') => storage_path('app/images'),
+        public_path('documents') => storage_path('app/documents'),
+        public_path('videos') => storage_path('app/videos'),
+        public_path('audios') => storage_path('app/audios'),
+        public_path('compressed') => storage_path('app/compressed'),
+        public_path('recycleBin') => storage_path('app/recycleBin'),
     ],
 
 ];

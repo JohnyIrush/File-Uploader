@@ -13,7 +13,7 @@ class UpdateFileManagerRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**

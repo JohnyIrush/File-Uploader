@@ -25,16 +25,12 @@
         },
         methods:
         {
-            showFileManagerMenu()
-            {
-                const fileManagerMenu = document.getElementById("file-manager-menu");
-                fileManagerMenu.classList.add("show");
-            }
+
         }
         ,
         mounted()
         {
-            this.showFileManagerMenu();
+
         }
     })
 </script>

@@ -6,9 +6,9 @@
         <span class="ms-1 font-weight-bold">File Uploader</span>
     </div>
     <hr class="horizontal dark mt-0">
-    <!--START Schools Packages/Modules/ Menu -->
+    <!--START  Packages/Modules/ Menu -->
       <main_menu></main_menu>
-    <!--END Schools Packages/Modules/ Menu -->
+    <!--END  Packages/Modules/ Menu -->
     <hr class="horizontal dark mt-0">
     <div class="sidenav-footer mx-3 glass-content">
       <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">

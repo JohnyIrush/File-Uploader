@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('file_managers', function (Blueprint $table) {
             $table->id();
-            $table->text("filename");
-            $table->text("originalname");
-            $table->text("encoding");
-            $table->text("mimetype");
-            $table->text("destination");
-            $table->text("fieldname");
-            $table->text("path");
+            $table->string('name');
+            $table->string('path');
+            $table->text("originalName")->nullable();
+            $table->text("encoding")->nullable();
+            $table->text("mimeType")->nullable();
+            $table->text("size")->nullable();
+            $table->text("type")->nullable();
             $table->timestamps();
         });
     }

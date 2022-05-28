@@ -6,10 +6,10 @@
           <div class="card sec-bg-color">
             <div class="card-body p-3">
               <!--<uploader></uploader>-->
-               <!--<uploader_advanced></uploader_advanced>-->
-               <fileuploadcomponent></fileuploadcomponent>
+               <uploader_advanced></uploader_advanced>
+               <!--<fileuploadcomponent></fileuploadcomponent>-->
                <!--<multi_upload></multi_upload>-->
-               <!--<upload_progress></upload_progress>-->
+            <!--<upload_progress></upload_progress>-->
             </div>
           </div>
         </div>
@@ -17,14 +17,14 @@
       <!--END Uploader & DropeZone-->
 
       <!--Start files Storage Capacity-->
-      <div class="row mt-4">
-        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-          <div class="card sec-bg-color">
-              <div class="card-header sec-bg-color">Documents</div>
-            <div class="card-body p-3">
+      <div class="row">
+        <div class="col-xl-3 col-sm-6  mt-2" v-for="folder in folders" :key="folder">
+          <div class="card sec-bg-color storage-height">
+              <div class="card-header sec-bg-color">{{folder.name}}</div>
+            <div class="card-body">
               <div class="row">
                 <div class="col">
-                    <docs_storage></docs_storage>
+                   <storage :mbCapacity="folder.mbCapacity" :name="folder.name"></storage>
                 </div>
               </div>
             </div>
@@ -34,100 +34,13 @@
                  <p class="nav-link" >Total Files: </p>
                </li>
                <li class="nav-item">
-                 <p class="nav-link">100k</p>
-               </li>
-             </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-          <div class="card sec-bg-color">
-            <div class="card-header sec-bg-color">Audios</div>
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col">
-                    <audio_storage></audio_storage>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer">
-             <ul class="nav justify-content-center">
-               <li class="nav-item">
-                 <p class="nav-link" >Total Files: </p>
-               </li>
-               <li class="nav-item">
-                 <p class="nav-link">30k</p>
-               </li>
-             </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-          <div class="card sec-bg-color">
-            <div class="card-header sec-bg-color">Videos</div>
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col">
-                    <video_storage></video_storage>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer">
-             <ul class="nav justify-content-center">
-               <li class="nav-item">
-                 <p class="nav-link" >Total Files: </p>
-               </li>
-               <li class="nav-item">
-                 <p class="nav-link">50k</p>
+                 <p class="nav-link">{{folder.totalFiles}}</p>
                </li>
              </ul>
             </div>
           </div>
         </div>
       </div>
-      <!--End files Storage Capacity & server speed-->
-
-      <!--Start files Storage Capacity-->
-      <div class="row mt-4">
-        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-          <div class="card sec-bg-color ">
-              <div class="card-header sec-bg-color">Storage</div>
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col">
-                    <storage></storage>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-          <div class="card sec-bg-color">
-              <div class="card-header sec-bg-color">Recycle Bin</div>
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col">
-                    <recycle_bin_storage></recycle_bin_storage>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-          <div class="card sec-bg-color">
-              <div class="card-header sec-bg-color">Server Speed</div>
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col">
-                    <server_speed></server_speed>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--End files Storage Capacity & server speed-->
-
   </div>
 </template>
 
@@ -137,12 +50,7 @@
     import Footer from '../widgets/Footer.vue'
     import uploader from '../plugins/uploader.vue'
     import uploader_advanced from '../plugins/Advanced/upload.vue'
-    import docs_storage from "../components/progress/circular/docs-storage.vue";
-    import audio_storage from "../components/progress/circular/audio-storage.vue";
-    import video_storage from "../components/progress/circular/video-storage.vue";
     import storage from "../components/progress/circular/storage.vue";
-    import recycle_bin_storage from "../components/progress/circular/recycle-bin-storage.vue";
-    import server_speed from "../components/progress/circular/server-speed.vue";
     import fileuploadcomponent from "../plugins/FileUploadComponent.vue";
     import multi_upload from "../plugins/Advanced/multi-upload.vue";
     import upload_progress from "../plugins/Advanced/UploadFiles.vue";
@@ -152,19 +60,28 @@
             Footer,
             uploader,
             uploader_advanced,
-            docs_storage,
-            audio_storage,
-            video_storage,
             storage,
-            recycle_bin_storage,
-            server_speed,
             fileuploadcomponent,
             multi_upload,
             upload_progress
         },
-
-        mounted() {
-
+        data() {
+            return {
+                folders: {}
+            }
+        },
+        methods: {
+          getDirectories()
+          {
+              axios.get('api/folder/directories')
+              .then((response)=>{
+                  this.folders = response.data
+              })
+          },
+        },
+        mounted()
+        {
+            this.getDirectories()
         },
     })
 </script>
@@ -173,6 +90,12 @@
 .sec-bg-color
 {
     background-color: rgb(149, 149, 245) !important;
+}
+
+
+.storage-height
+{
+    height: 350px !important;
 }
 
 </style>

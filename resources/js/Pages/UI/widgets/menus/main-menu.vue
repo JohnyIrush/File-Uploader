@@ -1,5 +1,11 @@
 <template>
     <div class="collapse glass-content navbar-collapse m-2  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
+<!--<nav class="nav flex-column">
+  <a class="nav-link active" aria-current="page" href="#">Active</a>
+  <a class="nav-link" href="#">Link</a>
+  <a class="nav-link" href="#">Link</a>
+  <a class="nav-link disabled">Disabled</a>
+</nav>-->
       <ul class="navbar-nav">
         <li class="nav-item">
           <Link class="nav-link " :href="route('dashboard')">
@@ -16,9 +22,9 @@
             </div>
             <span class="nav-link-text ms-1">File Manager</span>
           </Link>
-          <div class="ml-5">
+          <!--<div class="ml-5">
             <file_manager_menu></file_manager_menu>
-          </div>
+          </div>-->
         </li>
         <li class="nav-item">
           <Link class="nav-link  " :href="route('user-manager')">

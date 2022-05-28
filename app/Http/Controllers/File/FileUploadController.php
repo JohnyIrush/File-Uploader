@@ -40,44 +40,7 @@ class FileUploadController extends Controller
 
     public function store(StoreFileUploadRequest $request)
     {
-        /*
-       if($request->hasFile('files'))
-       {
-          $files = $request->file('files');
 
-          foreach ($files as $file)
-          {
-              $filename = $file->getClientOriginalName();
-              $path = $file->storeAs('uploads', $filename, 'public');
-
-              FileUpload::create(
-                  [
-                    "name" => $filename,
-                    "path" => '/storage/' . $path
-                  ]
-                  );
-          }
-
-          return response()->json(['success'=>'File uploaded successfully.']);
-        }
-        */
-
-        $request->validate([
-            'file' => 'required|mimes:jpg,jpeg,png,csv,txt,xlx,xls,pdf|max:2048'
-         ]);
-
-         $fileUpload = new FileUpload;
-
-         if($request->file()) {
-             $file_name = time().'_'.$request->file->getClientOriginalName();
-             $file_path = $request->file('file')->storeAs('uploads', $file_name, 'public');
-
-             $fileUpload->name = time().'_'.$request->file->getClientOriginalName();
-             $fileUpload->path = '/storage/' . $file_path;
-             $fileUpload->save();
-
-             return response()->json(['success'=>'File uploaded successfully.']);
-         }
     }
 
 

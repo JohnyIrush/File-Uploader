@@ -13,6 +13,7 @@ use App\Http\Controllers\Settings\SettingsController;
 use App\Http\Controllers\User\Task\TaskController;
 
 use App\Http\Controllers\FileUploadController;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('/', [UIController::class, 'login'])->name('/');
 
@@ -29,3 +30,8 @@ Route::get('/gallery', [GalleryController::class, 'gallery'])->name('gallery');
 Route::get('/settings', [SettingsController::class, 'settings'])->name('settings');
 
 Route::get("task", [TaskController::class, "task"])->name('task');
+
+
+Route::get('/folders/paths', function(){
+    return Storage::allDirectories('/');
+});
